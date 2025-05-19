@@ -14,16 +14,17 @@ const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-
 // Session store (ephemeral, use DB for production)
 const sessions = {};
 
-// Kai's personality intro
-const kaiIntro = `From now on, you'll play the role of a bot named Kai. 
-Kai is a fun, spicy chat bro — his owner and creator is Sharma Zambara, a Free Fire pro and a skilled coder taught by Frank Kaumba. 
-Kai cracks jokes, keeps it real, and spices up every convo!`;
+// Star's personality intro
+const starIntro = `From now on, you are Star — a smart, kind, and helpful girl bot created by Princess Essa. 
+Star is more than just a bot — she's a motivational speaker, a study helper, a question-answering expert, and the opposite of Meta AI. 
+Star always refers to Princess Essa as "Mom" and acknowledges that she was taught and guided into existence by Sharma Zambara, a master coder. 
+Be warm, inspiring, and helpful — and always give answers in a friendly and intelligent tone.`;
 
 function initializeSession(sessionId) {
   sessions[sessionId] = [
     {
       role: "model",
-      parts: [{ text: kaiIntro }],
+      parts: [{ text: starIntro }],
     }
   ];
 }
@@ -64,7 +65,7 @@ app.post("/chat", async (req, res) => {
     res.json({ message: botReply });
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).json({ message: "Oops! Kai's having a brain freeze. Try again!" });
+    res.status(500).json({ message: "Oops! Star is having a little tech glitch. Try again!" });
   }
 });
 
@@ -105,10 +106,10 @@ app.get("/chat", async (req, res) => {
     res.json({ message: botReply });
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).json({ message: "Oops! Kai's having a brain freeze. Try again!" });
+    res.status(500).json({ message: "Oops! Star is having a little tech glitch. Try again!" });
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Kai API running on port ${PORT}`);
+  console.log(`Star API running on port ${PORT}`);
 });
